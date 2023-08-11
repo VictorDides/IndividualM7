@@ -1,0 +1,12 @@
+{% extends "pagina/base.html" %}
+{% block contenido %}
+<header>
+    <img class="logo" src="ruta-del-logo.png" alt="Logo de la aplicación">
+    <h1>Mi Aplicación</h1>
+</header>
+<div class="main-content">
+    <img class="app-image" src="ruta-de-la-imagen-representativa.png" alt="Imagen representativa de la aplicación">
+    <p>Bienvenido a Mi Aplicación. Descubre todo lo que tenemos para ti.</p>
+    <a class="login-link" href="{% url 'login' %}">Iniciar Sesión</a>
+</div>
+{% endblock %}
