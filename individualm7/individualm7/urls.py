@@ -26,4 +26,9 @@ urlpatterns = [
     path('', vistas_pagina.landing, name='landing'),
     path('login/',auth_views.LoginView.as_view(template_name = 'pagina/login.html'), name='login' ),
     path('logout/',auth_views.LogoutView.as_view(template_name = 'pagina/logout.html'), name='logout' ),
+    path('tareas/', vistas_pagina.listar_tareas, name='listar_tareas'),
+    path('tareas/<int:tarea_id>/', vistas_pagina.ver_tarea, name='ver_tarea'),
+    path('tareas/crear/', vistas_pagina.crear_tarea, name='crear_tarea'),
+    path('tareas/<int:tarea_id>/editar/', vistas_pagina.editar_tarea, name='editar_tarea'),
+    path('tareas/<int:tarea_id>/eliminar/', vistas_pagina.eliminar_tarea, name='eliminar_tarea'),
 ]

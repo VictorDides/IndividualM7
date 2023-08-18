@@ -1,0 +1,10 @@
+{% extends "pagina/base.html" %}
+{% block contenido %}
+<h1>Lista de Tareas Pendientes</h1>
+<a href="{% url 'crear_tarea' %}">Agregar Tarea</a>
+<ul>
+    {% for tarea in tareas %}
+        <li>{{ tarea.titulo }} - {{ tarea.fecha_vencimiento }} <a href="{% url 'ver_tarea' tarea.id %}">Ver</a></li>
+    {% endfor %}
+</ul>
+{% endblock %}
