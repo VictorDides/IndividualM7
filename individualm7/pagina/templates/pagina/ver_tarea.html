@@ -8,6 +8,14 @@
     <p>Fecha de vencimiento: {{ tarea.fecha_vencimiento }}</p>
     <p>Etiquetas: {{ tarea.etiquetas.all|join:', ' }}</p>
     <p>Completada: {% if tarea.completada %} Sí {% else %} No {% endif %}</p>
+    <form method="post">
+        {% csrf_token %}
+        <label for="observaciones">Observaciones:</label><br>
+        <textarea name="observaciones" id="observaciones">{{ tarea.observaciones }}</textarea><br>
+        <button type="submit">Guardar Observaciones</button>
+        <button type="submit" name="eliminar">Eliminar</button>
+        <button type="submit" name="completar">Completar</button>
+    </form>
     <a href="{% url 'editar_tarea' tarea.id %}">Editar</a>
     <a href="{% url 'eliminar_tarea' tarea.id %}">Eliminar</a>
     <a href="{% url 'listar_tareas' %}">Retornar</a>

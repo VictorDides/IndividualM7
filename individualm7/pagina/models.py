@@ -8,4 +8,5 @@ class Tarea(models.Model):
     descripcion = models.TextField()
     fecha_vencimiento = models.DateTimeField()
     etiquetas = models.ManyToManyField(Etiqueta)
+    observaciones = models.TextField(blank=True, null=True)
     completada = models.BooleanField(default=False)

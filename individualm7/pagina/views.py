@@ -13,6 +13,21 @@ def listar_tareas_old(request):
 
 def ver_tarea(request, tarea_id):
     tarea = get_object_or_404(Tarea, pk=tarea_id)
+
+    if request.method == 'POST':
+        observaciones = request.POST.get('observaciones', '')
+        tarea.observaciones = observaciones
+        tarea.save()
+        
+        if 'eliminar' in request.POST:
+            tarea.delete()
+            return redirect('listar_tareas')
+
+        if 'completar' in request.POST:
+            tarea.completada = True
+            tarea.save()
+            return redirect('listar_tareas')
+
     return render(request, 'pagina/ver_tarea.html', {'tarea': tarea})
 
 def crear_tarea(request):
