@@ -1,5 +1,5 @@
 from django.contrib import admin
-from .models import Etiqueta
+from .models import Etiqueta, Prioridad
 
-# Register your models here.
+admin.site.register(Prioridad)
 admin.site.register(Etiqueta)

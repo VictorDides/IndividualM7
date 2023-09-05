@@ -34,7 +34,9 @@ def crear_tarea(request):
     if request.method == 'POST':
         form = TareaForm(request.POST)
         if form.is_valid():
-            form.save()
+            tarea = form.save(commit=False)
+            tarea.asignada_a = form.cleaned_data['asignada_a']
+            tarea.save()
             return redirect('listar_tareas')
     else:
         form = TareaForm()

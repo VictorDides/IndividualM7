@@ -1,4 +1,5 @@
 {% extends "pagina/base.html" %}
+
 {% block contenido %}
 <h1>Lista de Tareas Pendientes</h1>
     <a href="{% url 'crear_tarea' %}">Agregar Tarea</a>
@@ -6,9 +7,32 @@
         {{ filtro_form.as_p }}
         <button type="submit">Filtrar</button>
     </form>
-    <ul>
-        {% for tarea in tareas %}
-            <li>{{ tarea.titulo }} - {{ tarea.fecha_vencimiento }} <a href="{% url 'ver_tarea' tarea.id %}">Ver</a></li>
-        {% endfor %}
-    </ul>
-    {% endblock %}
+    <table>
+        <thead>
+            <tr>
+                <th>Titulo</th>
+                <th>Descripción</th>
+                <th>Fecha de Vencimiento</th>
+                <th>Etiquetas</th>
+                <th>Completada</th>
+                <th>Prioridad</th>
+                <th>Acciones</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for tarea in tareas %}
+                <tr>
+                    <td>{{ tarea.titulo }}</td>
+                    <td>{{ tarea.descripcion }}</td>
+                    <td>{{ tarea.fecha_vencimiento }}</td>
+                    <td>{{ tarea.etiquetas.all|join:', ' }}</td>
+                    <td>{% if tarea.completada %} Sí {% else %} No {% endif %}</td>
+                    <td>{{ tarea.prioridad }}</td>  
+                    <td>
+                        <a href="{% url 'ver_tarea' tarea.id %}">Ver</a>
+                    </td>
+                </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+{% endblock %}
